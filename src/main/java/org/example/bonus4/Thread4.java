@@ -18,7 +18,7 @@ public class Thread4 implements Runnable {
     @Override
     public void run() {
         try {
-            int CLIENT_NUMBER = 1;
+            int CLIENT_NUMBER = server4.getCLIENT_NUMBER();
             System.out.println("CLIENTE CONECTADO POR " + CLIENT_NUMBER + " VEZ");
             BufferedReader inSocket = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             PrintWriter outSocket = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()), true);
@@ -30,8 +30,9 @@ public class Thread4 implements Runnable {
             String username = inSocket.readLine();
 
             while (true) {
-                outSocket.println("ESCRIBE UN NUMERO [1-20]: ");
+                outSocket.println("ADIVINE UN NUMERO [1-20]: ");
                 message = inSocket.readLine();
+
                 if ((Integer.parseInt(message) == SECRET_NUMBER) && (!server4.getADIVINA())) {
                     server4.setADIVINA();
                     server4.setUSER(username);
@@ -39,6 +40,7 @@ public class Thread4 implements Runnable {
                     System.out.println("USUARUI: " + server4.getUSER().toUpperCase() + " HA ADIVINADO ESTE NUMERO");
                     socket.close();
                     System.out.println("CLIENTE SE DESCONECTO");
+                    break;
                 } else if ((Integer.parseInt(message) == SECRET_NUMBER) && (server4.getADIVINA())) {
                     outSocket.println("USUARIO: " + server4.getUSER().toUpperCase() + " YA HA ADIVINADO EL NUMERO");
                     socket.close();

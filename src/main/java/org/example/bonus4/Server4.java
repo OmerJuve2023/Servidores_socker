@@ -4,6 +4,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 public class Server4 {
+    private int CLIENT_NUMBER = 1;
     private int SECRET_NUMBER = (int) (Math.random() * 20 + 1);
     private boolean ADIVINA = false;
     private String USER;
@@ -37,6 +38,10 @@ public class Server4 {
 
     public String getUSER() {
         return USER;
+    }
+
+    public int getCLIENT_NUMBER() {
+        return CLIENT_NUMBER++;
     }
 
     public static void main(String[] args) {

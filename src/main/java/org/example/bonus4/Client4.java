@@ -8,52 +8,46 @@ import java.net.Socket;
 import java.util.Scanner;
 
 public class Client4 {
-
     public Client4() throws Exception {
-        Socket socket = new Socket("127.0.0.1", 2020);
-        System.out.println("conexión establecida");
+        Socket var1 = new Socket("127.0.0.1", 2020);
+        System.out.println("conexiÃ³n establecida");
+        BufferedReader var2 = new BufferedReader(new InputStreamReader(var1.getInputStream()));
+        PrintWriter var3 = new PrintWriter(new OutputStreamWriter(var1.getOutputStream()), true);
+        Scanner var4 = new Scanner(System.in);
+        String var5 = var2.readLine();
+        System.out.println("SERVIDOR: " + var5);
+        String var6 = var4.nextLine();
+        var3.println(var6);
+        String var8 = "USUARIO: " + var6;
 
-        BufferedReader inSocket = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-        PrintWriter outSocket = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()), true);
-        Scanner scanner = new Scanner(System.in);
+        while(true) {
+            var5 = var2.readLine();
+            if (!var5.startsWith("ADIVINE")) {
+                if (var5.startsWith(var8)) {
+                    System.out.println("ADIVINASTE EL NUMERO");
+                    var1.close();
+                    System.out.println("SE CERRO LA PUERTA");
+                } else {
+                    System.out.println(var5);
+                    var1.close();
+                    System.out.println("SE CERRO LA PUERTA");
+                }
 
-        String message;
-        String user;
-        String USER_NUMBER;
-
-        message = inSocket.readLine();
-        System.out.println("SERVIDOR: " + message);
-        user = scanner.nextLine();
-        outSocket.println(user);
-
-        String WINNING_MESSAGE = "USUARIO: " + user;
-
-        while (true) {
-            message = inSocket.readLine();
-
-            if (message.startsWith("ADIVINE")) {
-                System.out.println("SERVIDOR: ADIVINE UN NUMERO [1-20]");
-                USER_NUMBER = scanner.nextLine();
-                outSocket.println(USER_NUMBER);
-            } else if (message.startsWith(WINNING_MESSAGE)) {
-                System.out.println("ADIVINASTE EL NUMERO");
-                socket.close();
-                System.out.println("SE CERRO LA PUERTA");
-                break;
-            } else {
-                System.out.println(message);
-                socket.close();
-                System.out.println("SE CERRO LA PUERTA");
-                break;
+                return;
             }
+
+            System.out.println("SERVIDOR: ADIVINE UN NUMERO [1-20]");
+            String var7 = var4.nextLine();
+            var3.println(var7);
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] var0) {
         try {
             new Client4();
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception var2) {
+            var2.printStackTrace();
         }
+
     }
 }

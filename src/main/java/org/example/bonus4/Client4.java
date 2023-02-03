@@ -30,8 +30,8 @@ public class Client4 {
 
         while (true) {
             message = inSocket.readLine();
-            if (message.startsWith("ADIVINE")) {
 
+            if (message.startsWith("ADIVINE")) {
                 System.out.println("SERVIDOR: ADIVINE UN NUMERO [1-20]");
                 USER_NUMBER = scanner.nextLine();
                 outSocket.println(USER_NUMBER);

@@ -36,18 +36,18 @@ public class Thread4 implements Runnable {
                 if ((Integer.parseInt(message) == SECRET_NUMBER) && (!server4.getADIVINA())) {
                     server4.setADIVINA();
                     server4.setUSER(username);
-                    outSocket.println("USUARIO:" + server4.getUSER().toUpperCase() + " HAS ADIVINADO EL NUMERO");
-                    System.out.println("USUARUI: " + server4.getUSER().toUpperCase() + " HA ADIVINADO ESTE NUMERO");
+                    outSocket.println("USUARIO:" + server4.getUSER().toUpperCase() + " HAS ADIVINADO ESTE NUMERO");
+                    System.out.println("USUARUIO: " + server4.getUSER().toUpperCase() + " HAS ADIVINADO ESTE NUMERO");
                     socket.close();
                     System.out.println("CLIENTE SE DESCONECTO");
                     break;
                 } else if ((Integer.parseInt(message) == SECRET_NUMBER) && (server4.getADIVINA())) {
-                    outSocket.println("USUARIO: " + server4.getUSER().toUpperCase() + " YA HA ADIVINADO EL NUMERO");
+                    outSocket.println("USUARIO: " + server4.getUSER().toUpperCase() + " YA HAS ADIVINADO ESTE NUMERO");
                     socket.close();
                     System.out.println("CLIENTE SE DESCONECTO");
                     break;
                 } else if (server4.getADIVINA()) {
-                    outSocket.println("USUARIO: " + server4.getUSER().toUpperCase() + " YA HA ADIVINADO ESTE NUMERO");
+                    outSocket.println("USUARIO: " + server4.getUSER().toUpperCase() + " YA HAS ADIVINADO ESTE NUMERO");
                     socket.close();
                     System.out.println("CLIENTE SE DESCONECTO");
                     break;
